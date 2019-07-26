@@ -32,7 +32,7 @@ async function register(req, res) {
 			const userID = await db("users").insert(req.body);
 			const user = await db("users")
 				.select("id", "username")
-				.where({ id: parseInt(userID) })
+				.where({ id: userID[0] })
 				.first();
 			res.status(201).json(user);
 		}
